@@ -49,6 +49,48 @@
 web3.eth.defaultAccount = web3.eth.accounts[0];
         var ownercon = web3.eth.contract([
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -68,6 +110,20 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -114,7 +170,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 		"type": "constructor"
 	}
 ]);
-var owner_address = ownercon.at('0x92a130bd873270b1e2240fae394db27526a11cf4');
+var owner_address = ownercon.at('0xa3b8f367741fd3bc0b95e39556f850ef4a91e793');
 var toaddress=document.getElementById('to_ad');
 var amount1=document.getElementById('amt_1');
 var bt1=document.getElementById('bt_1');
