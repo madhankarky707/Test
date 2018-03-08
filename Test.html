@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>bank</title>
+</head>
+<body bgcolor="sky blue">
+<h1>banking</h1>
+<div><center>
+<p>Transfer</p>
+<input type="text" placeholder="to address" id="to_ad"/>
+<br>
+<br>
+<input type="text" placeholder="transfer amount" id="amt_1"/>
+<br>
+<br>
+<input type="button" value="transfer" id="bt_1"/>
+<br>
+<br>
+</center></div>
+
+<div><center>
+<p>Transferfrom</p>
+<input type="text" placeholder="from address" id="from_ad"/>
+<br>
+<br>
+<input type="text" placeholder="to address" id="to_ad1"/>
+<br>
+<br>
+<input type="text" placeholder="transfer amount" id="amt_3"/>
+<br>
+<br>
+<input type="button" value="transferfrom" onclick="transferfrom()"/>
+<br>
+<br>
+</center></div>
+
+<div><center>
+<p>Mint</p>
+<input type="text" placeholder="Deposite amount" id="amt_2"/>
+<br>
+<br>
+<input type="button" value="Mint" onclick="mintamt()"/>
+<br>
+<br>
+</center></div>
+
+</body>
+<script>
+web3.eth.defaultAccount = web3.eth.accounts[0];
+        var ownercon = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferfrom",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]);
+var owner_address = ownercon.at('0x92a130bd873270b1e2240fae394db27526a11cf4');
+var toaddress=document.getElementById('to_ad');
+var amount1=document.getElementById('amt_1');
+var bt1=document.getElementById('bt_1');
+
+if(web3.isConnected()) {
+  
+        console.log("Ok");
+        
+      } else {
+        console.log("no");
+      }
+      web3.version.getNetwork((err, netId) => {
+            switch (netId) {
+              case "1":
+                console.log('This is mainnet')
+                break
+              case "2":
+                console.log('This is the deprecated Morden test network.')
+                break
+              case "3":
+                console.log('This is the ropsten test network.')
+                break
+              case "4":
+                console.log('This is the Rinkeby test network.')
+                break
+              case "42":
+                console.log('This is the Kovan test network.')
+                break
+              default:
+                console.log('This is an unknown network.')
+            }
+        })
+
+bt1.addEventListener('click',function() 
+{
+
+          return owner_address.transfer(toaddress.value,amount1.value, function (error,result){
+            if (!error) {             
+               alert(result);
+                             
+            } else {
+               alert(error);
+            }
+        });
+});
+
+
+function transferfrom()
+{
+var fromaddress=document.getElementById('from_ad');
+var toaddress1=document.getElementById('to_ad1');
+var amount3=document.getElementById('amt_3');
+          return owner_address.transferfrom(fromaddress.value,toaddress1.value,amount3.value, function (error,result)
+	{
+            if (!error) {             
+               alert(result);
+                             
+            } else {
+               alert(error);
+            }
+        });
+}
+
+function mintamt()
+{
+var amount2=document.getElementById('amt_2');
+          return owner_address.mint(amount2.value, function (error,result)
+	{
+            if (!error) {             
+               alert(result);
+                             
+            } else {
+               alert(error);
+            }
+        });
+}
+</script>
+</html>
