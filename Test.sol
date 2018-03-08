@@ -9,15 +9,15 @@ contract test is ERC20
 {
     string public name;
     string public symbol;
-    uint256 public decimal;
-    uint256 public totalsupply;
+    uint256 public decimals;
+    uint256 public totalSupply;
     address owner;
     function test()
     {
         name="Mahendra Next Wealth";
         symbol="MNW";
-        decimal=18;
-        totalsupply=1000; 
+        decimals=18;
+        totalSupply=1000; 
         owner=msg.sender;
     }
   
@@ -42,9 +42,9 @@ contract test is ERC20
     }
     function mint(uint256 amount)check()public returns(uint256)
     {
-        require(amount<=totalsupply);
+        require(amount<=totalSupply);
         balance[msg.sender]+=amount;
-        require(balance[msg.sender]<=totalsupply);
+        require(balance[msg.sender]<=totalSupply);
         return balance[msg.sender];
     }
 }
