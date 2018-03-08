@@ -7,10 +7,10 @@ contract ERC20
 }
 contract test is ERC20
 {
-    string name;
-    string symbol;
-    uint256 decimal;
-    uint256 totalsupply;
+    string public name;
+    string public symbol;
+    uint256 public decimal;
+    uint256 public totalsupply;
     address owner;
     function test()
     {
